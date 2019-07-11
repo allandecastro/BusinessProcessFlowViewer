@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="BusinessProcessFlowViewer" constructor="BusinessProcessFlowViewer" version="1.0.0" display-name-key="BusinessProcessFlowViewer" description-key="BusinessProcessFlowViewer show BPF records." control-type="standard" preview-image="img/preview.png">
+    <data-set name="dataSet" display-name-key="Dataset_Display_Key">
+    </data-set>
+    <property name="parametersBPF" display-name-key="parametersBPF" description-key="parametersBPF descirption" of-type="SingleLine.Text" usage="input" required="true" default-value='{"bpfs":[{"bpfEntityPluralSchemaName":"opportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"},{"bpfEntityPluralSchemaName":"adc_testprocesses","lookupFieldSchemaName":"_bpf_opportunityid_value"},{"bpfEntityPluralSchemaName":"leadtoopportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"}]}'/>
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/style.css" order="1" />
+      <img path='img/preview.png'/>
+    </resources>
+  </control>
+</manifest>

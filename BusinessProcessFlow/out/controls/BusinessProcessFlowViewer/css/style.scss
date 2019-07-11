@@ -1,0 +1,127 @@
+// Colours -----------------------------------------
+$grey:  #777;
+$grey2: #dfe3e4;
+$blue:  #2183dd;
+$green: #009900;
+$white: #fff;
+
+// Progress Bar ------------------------------------
+.progress {
+  position: relative;
+  display: flex;
+
+  // Background Track
+  .progress-track {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    height: 5px;
+    background-color: $grey2;
+    z-index: -1;
+  }
+  
+  // Each Step on the Progress Bar
+  .progress-step {
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    
+    // Hide the final step's progress bar
+    &:last-child:after {
+      display: none;
+    }
+    
+    // Step's circle in default state
+    &:before {
+      content: "\f00c";
+      display: flex;      
+      margin: 0 auto;
+      margin-bottom: 10px;
+      width: 10px;
+      height: 10px;
+      background: $white; 
+      border: 4px solid $grey2;
+      border-radius: 100%;
+      color: $white;      
+    }
+    
+    // Step's progress bar in default state
+    &:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 0%;
+      transition: width 1s ease-in;
+      height: 5px;
+      background: $grey2;
+      z-index: -1;
+    }
+
+    // Step's active state
+    &.is-active {
+      color: $blue;
+
+      &:before {
+        border: 4px solid $grey;
+        animation: pulse 2s infinite;
+      }
+    }
+    
+    // Step's complete state
+    &.is-complete {
+      color: $green;
+      
+      // Step's circle in complete state
+      &:before {
+        font-family: FontAwesome;
+        font-size: 10px;
+        color: $white;
+        background: $green;
+        border: 4px solid transparent;
+      }
+      
+      // Step's progress bar in complete state
+      &:after {
+        background: $blue;
+        animation: nextStep 1s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+// Animations --------------------------------------
+// Pulse animation for Step's circle in active state
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(33,131,221, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(33,131,221, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(33,131,221, 0);
+  }
+}
+
+// Progressing to next step animation for Step's progress bar
+@keyframes nextStep {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+// General -----------------------------------------
+// container
+.container {
+  margin: 50px 100px;
+}
+
+// Button
+button {
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  cursor: pointer;
+}

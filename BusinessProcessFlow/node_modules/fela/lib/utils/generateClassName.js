@@ -1,0 +1,20 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = generateClassName;
+var chars = 'abcdefghijklmnopqrstuvwxyz';
+var charLength = chars.length;
+
+function generateClassName(id) {
+  var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  if (id <= charLength) {
+    return chars[id - 1] + className;
+  }
+
+  // Bitwise floor as safari performs much faster https://jsperf.com/math-floor-vs-math-round-vs-parseint/55
+  return generateClassName(id / charLength | 0, chars[id % charLength] + className);
+}
+module.exports = exports['default'];
