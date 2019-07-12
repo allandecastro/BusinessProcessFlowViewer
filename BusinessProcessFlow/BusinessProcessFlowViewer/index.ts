@@ -7,7 +7,13 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	private _context: ComponentFramework.Context<IInputs>;
 	private _container: HTMLDivElement;
 	private _parametersBPF: string;
-
+	private _completedColor: string;
+	private _completedTextColor: string;
+	private _activeColor: string;
+	private _activeTextColor: string;
+	private _notActiveColor: string;
+	private _notActiveTextColor: string;
+	private _progressTrackLineColor: string;
 	constructor() {
 
 	}
@@ -24,9 +30,18 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 		this._context = context;
 		this._container = container;
 		//this._context.mode.trackContainerResize(true);
-		
+
 		this._container = document.createElement("div");
-		this._parametersBPF = this._context.parameters.parametersBPF.raw;
+		//Get all parameters.
+		this._parametersBPF = this._context.parameters.parametersBPF == undefined ? "" : this._context.parameters.parametersBPF.raw;
+		this._completedColor = this._context.parameters.completedColor == undefined ? "" : this._context.parameters.completedColor.raw;
+		this._completedTextColor = this._context.parameters.completedTextColor == undefined ? "" : this._context.parameters.completedTextColor.raw;
+		this._activeColor = this._context.parameters.activeColor == undefined ? "" : this._context.parameters.activeColor.raw;
+		this._activeTextColor = this._context.parameters.activeTextColor == undefined ? "" : this._context.parameters.activeTextColor.raw;
+		this._notActiveColor = this._context.parameters.notActiveColor == undefined ? "" : this._context.parameters.notActiveColor.raw;
+		this._notActiveTextColor = this._context.parameters.notActiveTextColor == undefined ? "" : this._context.parameters.notActiveTextColor.raw;
+		this._progressTrackLineColor = this._context.parameters.progressTrackLineColor == undefined ? "" : this._context.parameters.progressTrackLineColor.raw;
+
 		if (this._parametersBPF.length == 0)
 			console.log("[BPFV][INIT] Parameters BPF is empty...");
 		// Adding the main table to the container DIV.
@@ -47,12 +62,12 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 			}
 			//Parse the Parameters and make sure it contains datas.
 			let jsonParametersBPF = JSON.parse(this._parametersBPF);
-			if  (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
+			if (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
 				console.log("[BPFV][UPDATEVIEW] Error : JsonParameters is Empty, ensure to correctly enter the BPF parameters value.");
 				return;
 			}
 			//Start the process for each records in the dataset (subgrid,view...).
-			let thisFunction=this;
+			let thisFunction = this;
 			for (let currentRecordId of context.parameters.dataSet.sortedRecordIds) {
 				console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
 				let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
@@ -74,7 +89,8 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							progresDiv.setAttribute("opportunityId", currentRecordId.toUpperCase());
 							let progresTrackDiv: HTMLDivElement = document.createElement("div");
 							progresTrackDiv.classList.add("progress-track");
-							progresDiv.appendChild(progresTrackDiv);							
+							progresTrackDiv.style.backgroundColor=thisFunction._progressTrackLineColor;
+							progresDiv.appendChild(progresTrackDiv);
 							foundBPF = true; // We set this var to true to stop the foreach loop for this record.
 							//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
 							let activeStageIdCurrentRecord: string = stageId[0];
@@ -91,20 +107,22 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 									let progresStageDiv: HTMLDivElement = document.createElement("div");
 									progresStageDiv.classList.add("progress-step");
 									progresStageDiv.classList.add("is-notactive");
+									progresStageDiv.style.color=thisFunction._notActiveTextColor;
 									//Test if this is the Active Stage.
 									if (value === activeStageIdCurrentRecord) {
 										activeStageFound = true;
 										console.log("\n [BPFV] Active stage found for " + currentRecordId + " : " + thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]));//cast key an number
 										progresStageDiv.classList.add("is-active");
+										progresStageDiv.style.color=thisFunction._activeTextColor;
 										progresStageDiv.classList.remove("is-notactive");
 									}
 									//If we haven't find the active stage that means previous stage is completed...or not yet active
-									if (!activeStageFound)
-									{
+									if (!activeStageFound) {
 										progresStageDiv.classList.add("is-complete");
+										progresStageDiv.style.color=thisFunction._completedTextColor;				
 										progresStageDiv.classList.remove("is-notactive");
-									} 								
-									console.log("\n [BPFV] Stage : " +thisFunction.toPascalCase(stageProcess.stage.name[Number(key)])+" / "+ value.toUpperCase());
+									}
+									console.log("\n [BPFV] Stage : " + thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]) + " / " + value.toUpperCase());
 									progresStageDiv.innerText = thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]);
 									progresStageDiv.setAttribute("idStage", value.toUpperCase());
 									//We add the element to the Div. 
@@ -115,7 +133,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							thisFunction._container.appendChild(progresDiv);
 						}
 						else
-							if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId+". You need to add it to the Parameters BPF.");
+							if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
 					}
 				});
 			}
