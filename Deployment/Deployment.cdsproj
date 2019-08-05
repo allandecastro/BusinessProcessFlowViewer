@@ -8,7 +8,7 @@
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Solution.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Solution.props')" />
 
   <PropertyGroup>
-    <ProjectGuid>87499025-5681-4fd3-aab8-7a8219c967fe</ProjectGuid>
+    <ProjectGuid>980a79b0-bd94-41c6-bbaa-7f78ce485cee</ProjectGuid>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <!--Remove TargetFramework when this is available in 16.1-->
     <TargetFramework>net462</TargetFramework>
@@ -37,14 +37,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\BusinessProcessFlow\BusinessProcessFlow.pcfproj">
-      <Project>642aafd6-aafd-4179-9a4d-0e8b375582e6</Project>
-      <Name>BusinessProcessFlow</Name>
-      <Targets>Build</Targets>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <OutputItemType>Content</OutputItemType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </ProjectReference>
+    <ProjectReference Include="..\BusinessProcessFlow\BusinessProcessFlow.pcfproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
