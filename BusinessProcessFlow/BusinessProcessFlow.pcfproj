@@ -9,7 +9,7 @@
   
   <PropertyGroup>
     <Name>BusinessProcessFlow</Name>
-    <ProjectGuid>642aafd6-aafd-4179-9a4d-0e8b375582e6</ProjectGuid>
+    <ProjectGuid>0c3973c5-5859-4330-8665-7f19ce725df7</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
   </PropertyGroup>
 
