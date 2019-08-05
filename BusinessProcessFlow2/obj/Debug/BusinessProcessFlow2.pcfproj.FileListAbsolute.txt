@@ -1,0 +1,2 @@
+C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\BusinessProcessFlow2\obj\Debug\BusinessProcessFlow2.pcfprojAssemblyReference.cache
+C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\BusinessProcessFlow2\obj\Debug\BusinessProcessFlow2.pcfproj.CoreCompileInputs.cache

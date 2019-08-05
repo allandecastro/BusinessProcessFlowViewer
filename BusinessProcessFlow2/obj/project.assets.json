@@ -1,0 +1,115 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.3.4": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Pcf.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.3.4": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Pcf.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x64": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.3.4": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Pcf.targets": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x86": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.3.4": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Pcf.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.PowerApps.MSBuild.Pcf/0.3.4": {
+      "sha512": "HSwSnkCME8y3clFYfkFt9ultW9OOL7ym5JikaTuT8GDAE/Qr5F3qlyHyL6Gw0F8J0TyqpPfn635Q/LIzAhUwOA==",
+      "type": "package",
+      "path": "microsoft.powerapps.msbuild.pcf/0.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "3rdPartyNotice.txt",
+        "LICENSE.txt",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.props",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
+        "microsoft.powerapps.msbuild.pcf.0.3.4.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "Microsoft.PowerApps.MSBuild.Pcf >= 0.*"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\allan.de.castro\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow2\\BusinessProcessFlow2.pcfproj",
+      "projectName": "BusinessProcessFlow2",
+      "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow2\\BusinessProcessFlow2.pcfproj",
+      "packagesPath": "C:\\Users\\allan.de.castro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow2\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\allan.de.castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\allan.de.castro\\Downloads": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": {
+            "target": "Package",
+            "version": "[0.*, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}
