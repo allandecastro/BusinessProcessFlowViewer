@@ -7,7 +7,14 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	private _context: ComponentFramework.Context<IInputs>;
 	private _container: HTMLDivElement;
 	private _parametersBPF: string;
-
+	private _completedColor: string;
+	private _completedTextColor: string;
+	private _activeColor: string;
+	private _activeTextColor: string;
+	private _notActiveColor: string;
+	private _notActiveTextColor: string;
+	private _progressTrackLineColor: string;
+	private _pulseColor: string;
 	constructor() {
 
 	}
@@ -24,13 +31,66 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 		this._context = context;
 		this._container = container;
 		//this._context.mode.trackContainerResize(true);
-		
+
 		this._container = document.createElement("div");
-		this._parametersBPF = this._context.parameters.parametersBPF.raw;
+		//Get all parameters.
+		this._parametersBPF = this._context.parameters.parametersBPF == undefined ? "" : this._context.parameters.parametersBPF.raw;
+		this._completedColor = this._context.parameters.completedColor == undefined ? "" : this._context.parameters.completedColor.raw;
+		this._completedTextColor = this._context.parameters.completedTextColor == undefined ? "" : this._context.parameters.completedTextColor.raw;
+		this._activeColor = this._context.parameters.activeColor == undefined ? "" : this._context.parameters.activeColor.raw;
+		this._activeTextColor = this._context.parameters.activeTextColor == undefined ? "" : this._context.parameters.activeTextColor.raw;
+		this._notActiveColor = this._context.parameters.notActiveColor == undefined ? "" : this._context.parameters.notActiveColor.raw;
+		this._notActiveTextColor = this._context.parameters.notActiveTextColor == undefined ? "" : this._context.parameters.notActiveTextColor.raw;
+		this._progressTrackLineColor = this._context.parameters.progressTrackLineColor == undefined ? "" : this._context.parameters.progressTrackLineColor.raw;
+		this._pulseColor = this._context.parameters.pulseColor == undefined ? "" : this._context.parameters.pulseColor.raw;
 		if (this._parametersBPF.length == 0)
 			console.log("[BPFV][INIT] Parameters BPF is empty...");
 		// Adding the main table to the container DIV.
 		container.appendChild(this._container);
+
+		//try to create style for color variable
+		var styleNode = document.createElement('style');
+		styleNode.type = "text/css";
+		//We create style css here because we use some parameters.
+		if (this._progressTrackLineColor.length > 0) {
+			var styleText = document.createTextNode('.progress-track { background-color: ' + this._progressTrackLineColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._notActiveColor.length > 0) {
+			var styleText = document.createTextNode('.progress .progress-step:before { border: 4px solid ' + this._notActiveColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._notActiveTextColor.length > 0) {
+			var styleText = document.createTextNode('.is-notactive { color: ' + this._notActiveTextColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		//    animation: pulse 2s infinite;
+		if (this._activeColor.length > 0) {
+			if (this._pulseColor && this._pulseColor.length > 0) 
+				var styleText = document.createTextNode('.progress .progress-step.is-active:before { border: 4px solid ' + this._activeColor + '; animation: pulse 2s infinite; }');
+			else
+				var styleText = document.createTextNode('.progress .progress-step.is-active:before { border: 4px solid ' + this._activeColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._activeTextColor.length > 0) {
+			var styleText = document.createTextNode('.is-active { color: ' + this._activeTextColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._completedTextColor.length > 0) {
+			var styleText = document.createTextNode('.is-complete { color: ' + this._completedTextColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._completedColor.length > 0) {
+			var styleText = document.createTextNode('.progress .progress-step.is-complete:before { background: ' + this._completedColor + '; } ');
+			styleNode.appendChild(styleText);
+			var styleText = document.createTextNode('.progress .progress-step.is-complete:after { background: ' + this._completedColor + '; } ');
+			styleNode.appendChild(styleText);
+		}
+		if (this._pulseColor && this._pulseColor.length > 0) {
+			var styleText = document.createTextNode("@keyframes pulse {0% {box-shadow: 0 0 0 0 " + this.hexToRgba(this._pulseColor, 40) + " ;} 70% {box-shadow: 0 0 0 10px " + this.hexToRgba(this._pulseColor, 100) + ";} 100% {box-shadow: 0 0 0 0 " + this.hexToRgba(this._pulseColor, 100) + ";} }} ");
+			styleNode.appendChild(styleText);
+		}
+		document.getElementsByTagName('head')[0].appendChild(styleNode);
 	}
 	/**
 	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
@@ -47,12 +107,13 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 			}
 			//Parse the Parameters and make sure it contains datas.
 			let jsonParametersBPF = JSON.parse(this._parametersBPF);
-			if  (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
+			if (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
 				console.log("[BPFV][UPDATEVIEW] Error : JsonParameters is Empty, ensure to correctly enter the BPF parameters value.");
 				return;
 			}
 			//Start the process for each records in the dataset (subgrid,view...).
-			let thisFunction=this;
+			let thisFunction = this;
+			let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
 			for (let currentRecordId of context.parameters.dataSet.sortedRecordIds) {
 				console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
 				let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
@@ -71,10 +132,10 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							//Building the DOM element...
 							let progresDiv: HTMLDivElement = document.createElement("div");
 							progresDiv.classList.add("progress");
-							progresDiv.setAttribute("opportunityId", currentRecordId.toUpperCase());
+							progresDiv.setAttribute(targetEntityLogicalName, currentRecordId.toUpperCase());
 							let progresTrackDiv: HTMLDivElement = document.createElement("div");
 							progresTrackDiv.classList.add("progress-track");
-							progresDiv.appendChild(progresTrackDiv);							
+							progresDiv.appendChild(progresTrackDiv);
 							foundBPF = true; // We set this var to true to stop the foreach loop for this record.
 							//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
 							let activeStageIdCurrentRecord: string = stageId[0];
@@ -99,12 +160,11 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 										progresStageDiv.classList.remove("is-notactive");
 									}
 									//If we haven't find the active stage that means previous stage is completed...or not yet active
-									if (!activeStageFound)
-									{
+									if (!activeStageFound) {
 										progresStageDiv.classList.add("is-complete");
 										progresStageDiv.classList.remove("is-notactive");
-									} 								
-									console.log("\n [BPFV] Stage : " +thisFunction.toPascalCase(stageProcess.stage.name[Number(key)])+" / "+ value.toUpperCase());
+									}
+									console.log("\n [BPFV] Stage : " + thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]) + " / " + value.toUpperCase());
 									progresStageDiv.innerText = thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]);
 									progresStageDiv.setAttribute("idStage", value.toUpperCase());
 									//We add the element to the Div. 
@@ -115,11 +175,24 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							thisFunction._container.appendChild(progresDiv);
 						}
 						else
-							if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId+". You need to add it to the Parameters BPF.");
+							if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
 					}
 				});
 			}
 		}
+	}
+	/**
+	 * * This function convert a hex color to an rgba.
+	 * @param hex : String of the hex color to be used for the pulse animation
+	 * @param opacity: Opacity for the hex color 
+	 */
+	private hexToRgba(hex: string, opacity: number): String {
+		hex = hex.replace('#', '');
+		var r = parseInt(hex.substring(0, hex.length / 3), 16);
+		var g = parseInt(hex.substring(hex.length / 3, 2 * hex.length / 3), 16);
+		var b = parseInt(hex.substring(2 * hex.length / 3, 3 * hex.length / 3), 16);
+
+		return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
 	}
 	/**
 	 * * This function query the process stages for a specific process id and return object with an Array with all Stage Name and Stage Unique Identifier.
