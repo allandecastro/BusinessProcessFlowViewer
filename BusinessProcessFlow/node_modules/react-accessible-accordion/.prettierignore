@@ -1,0 +1,8 @@
+node_modules
+flow-typed
+bin
+dist
+.prettierignore
+.nvmrc
+__snapshots__
+coverage/**/*
