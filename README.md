@@ -15,6 +15,27 @@ You can find the managed solution into ./Deployment/ folder.
 
 Then you must follow these steps:
 
+* Import the solution into your target environment.
+
+* Open a form where you added a subgrid
+
+* Click to managed properties of the subgrid, and add the custom Control "BusinessProcessFlowViewer"
+
+* You can see that they are severals parameters (with default values), it allows you to change color and to configure the component properly
+
+* Here are the list of all parameters to be set : 
+
+  * parametersBPF: {"bpfs":[{"bpfEntityPluralSchemaName":"opportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"},"bpfEntityPluralSchemaName":"leadtoopportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"}]}
+
+  * completedColor This Hex Color define the background color of the completed stages.
+  * completedTextColor This Hex Color define the  text color of the completed stages.
+  * activeColor: This Hex Color define the background color of the active stage.
+  * activeTextColor: This Hex Color define the text color of the active stage.
+  * notActiveColor: This Hex Color define the background color of the not active stages.
+  * notActiveTextColor: This Hex Color define the text color of the not active stages.
+  * progressTrackLineColor: This Hex Color define the background color of the progress line.
+  * pulseColor:This Hex Color define the pulse color. If empty pulse is not enabled.
+
 # Get required tools
 
 To use Microsoft PowerApps CLI, do the following:
