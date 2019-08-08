@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BusinessProcessFlowViewer" constructor="BusinessProcessFlowViewer" version="1.0.0" display-name-key="BusinessProcessFlowViewer" description-key="BusinessProcessFlowViewer show BPF of any records type." control-type="standard" preview-image="img/preview.png" >
+  <control namespace="BusinessProcessFlowViewer" constructor="BusinessProcessFlowViewer" version="1.0.0" display-name-key="BusinessProcessFlowViewer" description-key="BusinessProcessFlowViewer show BPF of any records type." control-type="standard" preview-image="img/preview.png">
     <data-set name="dataSet" display-name-key="DataSet View Used">
     </data-set>
-    <property name="parametersBPF" display-name-key="parametersBPF" description-key="parametersBPF descirption" of-type="SingleLine.Text" usage="input" required="true" default-value='{"bpfs":[{"bpfEntityPluralSchemaName":"opportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"},{"bpfEntityPluralSchemaName":"leadtoopportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"}]}'/>  
+    <property name="parametersBPF" display-name-key="parametersBPF" description-key="parametersBPF descirption" of-type="SingleLine.Text" usage="input" required="true" default-value='{"bpfs":[{"bpfEntityPluralSchemaName":"opportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"},{"bpfEntityPluralSchemaName":"leadtoopportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"}]}'/>
     <property name="completedColor" display-name-key="completedColor" description-key="This Hex Color define the background color of the completed stages." of-type="SingleLine.Text" usage="input" required="true" default-value='#090'/>
     <property name="completedTextColor" display-name-key="completedTextColor" description-key="This Hex Color define the  text color of the completed stages." of-type="SingleLine.Text" usage="input" required="true" default-value='#090'/>
     <property name="activeColor" display-name-key="activeColor" description-key="This Hex Color define the background color of the active stage." of-type="SingleLine.Text" usage="input" required="true" default-value='#777'/>
@@ -17,5 +17,8 @@
       <css path="css/style.css" order="1" />
       <img path='img/preview.png'/>
     </resources>
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
   </control>
 </manifest>

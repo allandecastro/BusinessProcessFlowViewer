@@ -16,6 +16,9 @@
       <css path="css/style.css" order="1"/>
       <img path="img/preview1.png"/>
     </resources>
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true"/>
+    </feature-usage>
     <built-by name="pac" version="0.3.4"/>
   </control>
 </manifest>
