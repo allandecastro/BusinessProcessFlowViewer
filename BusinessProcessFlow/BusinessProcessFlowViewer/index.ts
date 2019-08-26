@@ -48,31 +48,29 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
-		if (!this._controlViewRendered) {
+		if (!this._controlViewRendered && !context.parameters.dataSet.loading) {
 			this._controlViewRendered = true;
 			this._context = context;
 			//We make sure that the data set loading is finished.
-			if (!context.parameters.dataSet.loading) {
-				//We remove all items to make sure that if you perform a refresh, it will not add the records again.
-				this.RemoveChildItems();
-				//Parse the Parameters and make sure it contains datas.
-				let jsonParametersBPF = JSON.parse(this._parametersBPF);
-				if (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
-					console.log("[BPFV][UPDATEVIEW] Error : JsonParameters is Empty, ensure to correctly enter the BPF parameters value.");
-					return;
-				}
-				//Start the process for each records in the dataset (subgrid,view...).
-				let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
-				this.ProcessAllRecordsInDataSet(jsonParametersBPF, targetEntityLogicalName);
+
+			//We remove all items to make sure that if you perform a refresh, it will not add the records again.
+			this.RemoveChildItems();
+			//Parse the Parameters and make sure it contains datas.
+			let jsonParametersBPF = JSON.parse(this._parametersBPF);
+			if (!jsonParametersBPF || jsonParametersBPF.bpfs == null && jsonParametersBPF.bpfs.length == 0) {
+				console.log("[BPFV][UPDATEVIEW] Error : JsonParameters is Empty, ensure to correctly enter the BPF parameters value.");
+				return;
 			}
+			//Start the process for each records in the dataset (subgrid,view...).
+			let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
+			this.ProcessAllRecordsInDataSet(jsonParametersBPF, targetEntityLogicalName);
+
 		}
 	}
 	public ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, entityName: string, filterFieldSchemaName: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean) {
 
 		let activeStage: string[] = new Array();
 		var _this = this;
-		var str = entityName + "?$select=_activestageid_value," + filterFieldSchemaName + ",_processid_value&$filter=" + filterFieldSchemaName + " eq " + currentRecordId;
-		console.log(str);
 		this._context.webAPI.retrieveMultipleRecords(entityName, "?$select=_activestageid_value," + filterFieldSchemaName + ",_processid_value&$filter=" + filterFieldSchemaName + " eq " + currentRecordId).then(
 			function success(results) {
 				console.log("\n [BPFV] ProcessBusinessProcessFlowStageIdByCurrentRecordId CALLBACK  " + currentRecordId);
@@ -99,16 +97,13 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							entityId: entityReference.id,
 							openInNewWindow: true
 						}
-						console.log("OnCLik :  logical name = " + targetEntityLogicalName + " id = " + currentRecordId);
 						_this._context.navigation.openForm(entityFormOptions);
 					};
 					progresDiv.onmouseover = function () {
-						console.log("Hover:  logical name = " + targetEntityLogicalName + " id = " + currentRecordId);
 						var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
 						card.style.display = "block";
 					};
 					progresDiv.onmouseout = function () {
-						console.log("Hover Out:  logical name = " + targetEntityLogicalName + " id = " + currentRecordId)
 						var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
 						card.style.display = "none";
 					};
@@ -300,7 +295,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	private ProcessAllRecordsInDataSet(jsonParametersBPF: any, targetEntityLogicalName: string) {
 		for (let currentRecordId of this._context.parameters.dataSet.sortedRecordIds) {
 			console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
-		
+
 			let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
 			//We're searching for each bpfs mentionned in the parameters until we found the active BPF for this opportunity.
 			var iteration = 0;
