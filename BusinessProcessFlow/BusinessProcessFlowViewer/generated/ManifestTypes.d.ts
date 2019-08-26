@@ -13,6 +13,7 @@ export interface IInputs {
     notActiveTextColor: ComponentFramework.PropertyTypes.StringProperty;
     progressTrackLineColor: ComponentFramework.PropertyTypes.StringProperty;
     pulseColor: ComponentFramework.PropertyTypes.StringProperty;
+    cardFields: ComponentFramework.PropertyTypes.StringProperty;
     dataSet: ComponentFramework.PropertyTypes.DataSet;
 }
 export interface IOutputs {

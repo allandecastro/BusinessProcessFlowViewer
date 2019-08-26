@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@types/node": "^10.12.18",
-    "@types/powerapps-component-framework": "1.1.0"
+    "@types/powerapps-component-framework": "1.1.0",
+    "dynamics-web-api": "^1.5.10"
   },
   "devDependencies": {
     "pcf-scripts": "^0",
