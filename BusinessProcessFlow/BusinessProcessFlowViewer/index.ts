@@ -65,92 +65,6 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 				let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
 				this.ProcessAllRecordsInDataSet(jsonParametersBPF, targetEntityLogicalName);
 			}
-<<<<<<< Updated upstream
-			//Start the process for each records in the dataset (subgrid,view...).
-
-			let thisFunction = this;
-			let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
-			for (let currentRecordId of context.parameters.dataSet.sortedRecordIds) {
-				console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
-				let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
-				//We're searching for each bpfs mentionned in the parameters until we found the active BPF for this opportunity.
-				var iteration = 0;
-				jsonParametersBPF.bpfs.forEach(function (element: any) {
-					if (!foundBPF) {
-						iteration++;
-						//Get plural Schema Name of the BPF and the field schema name where we can link to the target record.
-						let bpfEntityPluralSchemaName: string = element.bpfEntityPluralSchemaName;
-						let lookupFieldSchemaName: string = element.lookupFieldSchemaName;
-						//Trying to retrieve the bpf entity.
-						let stageId: string[] = thisFunction.getActiveBusinessProcessFlowStageIdByOpptyId(currentRecordId, bpfEntityPluralSchemaName, lookupFieldSchemaName);
-						if (stageId && stageId.length > 0) 	//If we have something that means it's the BPF used.
-						{
-							//Building the DOM element...
-							let progresDiv: HTMLDivElement = document.createElement("div");
-							progresDiv.classList.add("progress");
-							progresDiv.classList.add("progress" + thisFunction._viewId);
-							progresDiv.setAttribute(targetEntityLogicalName, currentRecordId.toUpperCase());
-							let progresTrackDiv: HTMLDivElement = document.createElement("div");
-							progresTrackDiv.classList.add("progress-track");
-							progresTrackDiv.classList.add("progress-track" + thisFunction._viewId);
-
-							progresDiv.appendChild(progresTrackDiv)
-							progresDiv.onclick = function () {
-								let entityReference = context.parameters.dataSet.records[currentRecordId].getNamedReference();
-								let entityFormOptions = {
-									entityName: targetEntityLogicalName,
-									entityId: entityReference.id,
-									openInNewWindow: true
-								}
-								console.log("OnCLik :  logical name = " + targetEntityLogicalName + " id = " + currentRecordId);
-								context.navigation.openForm(entityFormOptions);
-							};
-							foundBPF = true; // We set this var to true to stop the foreach loop for this record.
-							//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
-							let activeStageIdCurrentRecord: string = stageId[0];
-							let processIdCurrentRecord: string = stageId[1];
-							//Retrieve all Stages (name and id) for this BPF.
-							let stageProcess = thisFunction.getAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord);
-							// ? Maybe useless to stringify because we parse them just after. To be improved.
-							let jsonObjectStageId = JSON.stringify(stageProcess.stage.id);
-							//Define a variable to know which step is active for this record and this BPF.
-							let activeStageFound: boolean = false;
-							//Parse all stage id and create cells with name and find the one active.
-							JSON.parse(jsonObjectStageId, (key, value) => {
-								if (typeof value === 'string') {
-									let progresStageDiv: HTMLDivElement = document.createElement("div");
-									//+this._viewId
-									progresStageDiv.classList.add("progress-step");
-									progresStageDiv.classList.add("progress-step" + thisFunction._viewId);
-									progresStageDiv.classList.add("is-notactive");
-									progresStageDiv.classList.add("is-notactive" + thisFunction._viewId);
-									//Test if this is the Active Stage.
-									if (value === activeStageIdCurrentRecord) {
-										activeStageFound = true;
-										console.log("\n [BPFV] Active stage found for " + currentRecordId + " : " + thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]));//cast key an number
-										progresStageDiv.classList.add("is-active");
-										progresStageDiv.classList.add("is-active" + thisFunction._viewId);
-										progresStageDiv.classList.remove("is-notactive");
-										progresStageDiv.classList.remove("is-notactive" + thisFunction._viewId);
-
-									}
-									//If we haven't find the active stage that means previous stage is completed...or not yet active
-									if (!activeStageFound) {
-										progresStageDiv.classList.add("is-complete");
-										progresStageDiv.classList.add("is-complete" + thisFunction._viewId);
-										progresStageDiv.classList.remove("is-notactive");
-										progresStageDiv.classList.remove("is-notactive" + thisFunction._viewId);
-									}
-									console.log("\n [BPFV] Stage : " + thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]) + " / " + value.toUpperCase());
-									progresStageDiv.innerText = thisFunction.toPascalCase(stageProcess.stage.name[Number(key)]);
-									progresStageDiv.setAttribute("idStage", value.toUpperCase());
-									//We add the element to the Div. 
-									progresDiv.appendChild(progresStageDiv);
-								}
-							});
-							//Add the element to the container Div.
-							thisFunction._container.appendChild(progresDiv);
-=======
 		}
 	}
 	public ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, entityName: string, filterFieldSchemaName: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean) {
@@ -209,7 +123,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 					if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
 			},
 			function (error) {
-				console.log("\n [BPFV] Error during ProcessBusinessProcessFlowStageIdByCurrentRecordId for bpf entity : " + entityName + " for record : " + currentRecordId+" Error : "+error);
+				console.log("\n [BPFV] Error during ProcessBusinessProcessFlowStageIdByCurrentRecordId for bpf entity : " + entityName + " for record : " + currentRecordId);
 			}
 		);
 	}
@@ -255,6 +169,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							progresStageDiv.classList.add("is-active" + _this._viewId);
 							progresStageDiv.classList.remove("is-notactive");
 							progresStageDiv.classList.remove("is-notactive" + _this._viewId);
+
 						}
 						//If we haven't find the active stage that means previous stage is completed...or not yet active
 						if (!activeStageFound) {
@@ -262,7 +177,6 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 							progresStageDiv.classList.add("is-complete" + _this._viewId);
 							progresStageDiv.classList.remove("is-notactive");
 							progresStageDiv.classList.remove("is-notactive" + _this._viewId);
->>>>>>> Stashed changes
 						}
 						console.log("\n [BPFV] Stage : " + _this.ToPascalCase(datas.stage.name[Number(key)]) + " / " + value.toUpperCase());
 						progresStageDiv.innerText = _this.ToPascalCase(datas.stage.name[Number(key)]);
