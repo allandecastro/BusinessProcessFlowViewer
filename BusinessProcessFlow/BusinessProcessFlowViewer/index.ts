@@ -67,60 +67,71 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 
 		}
 	}
-	public ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, entityName: string, filterFieldSchemaName: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean) {
 
-		let activeStage: string[] = new Array();
-		var _this = this;
-		this._context.webAPI.retrieveMultipleRecords(entityName, "?$select=_activestageid_value," + filterFieldSchemaName + ",_processid_value&$filter=" + filterFieldSchemaName + " eq " + currentRecordId).then(
-			function success(results) {
-				console.log("\n [BPFV] ProcessBusinessProcessFlowStageIdByCurrentRecordId CALLBACK  " + currentRecordId);
-				if (results.entities.length > 0) {
-					activeStage.push(results.entities[0]["_activestageid_value"]);
-					activeStage.push(results.entities[0]["_processid_value"]);
-				}
-				if (activeStage && activeStage.length > 0) 	//If we have something that means it's the BPF used.
-				{
-					//Building the DOM element...
-					let progresDiv: HTMLDivElement = document.createElement("div");
-					progresDiv.classList.add("progress");
-
-					progresDiv.classList.add("progress" + _this._viewId);
-					progresDiv.setAttribute(targetEntityLogicalName, currentRecordId.toUpperCase());
-					let progresTrackDiv: HTMLDivElement = document.createElement("div");
-					progresTrackDiv.classList.add("progress-track");
-					progresTrackDiv.classList.add("progress-track" + _this._viewId);
-					progresDiv.appendChild(progresTrackDiv)
-					progresDiv.onclick = function () {
-						let entityReference = _this._context.parameters.dataSet.records[currentRecordId].getNamedReference();
-						let entityFormOptions = {
-							entityName: targetEntityLogicalName,
-							entityId: entityReference.id,
-							openInNewWindow: true
+	public ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean) {
+		jsonParametersBPF.bpfs.forEach(function (element: any) {
+			if (!foundBPF) {
+				iteration++;
+				//Get plural Schema Name of the BPF and the field schema name where we can link to the target record.
+				let bpfEntitySchemaName: string = element.bpfEntitySchemaName;
+				let lookupFieldSchemaName: string = element.lookupFieldSchemaName;
+				//Trying to retrieve the bpf entity.
+				let activeStage: string[] = new Array();
+				var _this = this;
+				this._context.webAPI.retrieveMultipleRecords(bpfEntitySchemaName, "?$select=_activestageid_value," + lookupFieldSchemaName + ",_processid_value&$filter=" + lookupFieldSchemaName + " eq " + currentRecordId).then(
+					function ProcessProcessStagesAndBuildDom(results) {
+						console.log("\n [BPFV] ProcessBusinessProcessFlowStageIdByCurrentRecordId CALLBACK  " + currentRecordId);
+						if (results.entities.length > 0) {
+							activeStage.push(results.entities[0]["_activestageid_value"]);
+							activeStage.push(results.entities[0]["_processid_value"]);
 						}
-						_this._context.navigation.openForm(entityFormOptions);
-					};
-					progresDiv.onmouseover = function () {
-						var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
-						card.style.display = "block";
-					};
-					progresDiv.onmouseout = function () {
-						var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
-						card.style.display = "none";
-					};
-					foundBPF = true; // We set this var to true to stop the foreach loop for this record.
-					//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
-					let activeStageIdCurrentRecord: string = activeStage[0];
-					let processIdCurrentRecord: string = activeStage[1];
-					//Retrieve all Stages (name and id) for this BPF.					
-					_this.GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord, targetEntityLogicalName, currentRecordId, progresDiv, activeStageIdCurrentRecord);
-				}
-				else
-					if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
-			},
-			function (error) {
-				console.log("\n [BPFV] Error during ProcessBusinessProcessFlowStageIdByCurrentRecordId for bpf entity : " + entityName + " for record : " + currentRecordId);
+						if (activeStage && activeStage.length > 0) 	//If we have something that means it's the BPF used.
+						{
+							//Building the DOM element...
+							let progresDiv: HTMLDivElement = document.createElement("div");
+							progresDiv.classList.add("progress");
+		
+							progresDiv.classList.add("progress" + _this._viewId);
+							progresDiv.setAttribute(targetEntityLogicalName, currentRecordId.toUpperCase());
+							let progresTrackDiv: HTMLDivElement = document.createElement("div");
+							progresTrackDiv.classList.add("progress-track");
+							progresTrackDiv.classList.add("progress-track" + _this._viewId);
+							progresDiv.appendChild(progresTrackDiv)
+							progresDiv.onclick = function () {
+								let entityReference = _this._context.parameters.dataSet.records[currentRecordId].getNamedReference();
+								let entityFormOptions = {
+									entityName: targetEntityLogicalName,
+									entityId: entityReference.id,
+									openInNewWindow: true
+								}
+								_this._context.navigation.openForm(entityFormOptions);
+							};
+							progresDiv.onmouseover = function () {
+								var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
+								card.style.display = "block";
+							};
+							progresDiv.onmouseout = function () {
+								var card = document.getElementsByClassName(currentRecordId)[0] as HTMLElement;
+								card.style.display = "none";
+							};
+							foundBPF = true; // We set this var to true to stop the foreach loop for this record.
+							//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
+							let activeStageIdCurrentRecord: string = activeStage[0];
+							let processIdCurrentRecord: string = activeStage[1];
+							//Retrieve all Stages (name and id) for this BPF.	
+											
+							_this.GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord, targetEntityLogicalName, currentRecordId, progresDiv, activeStageIdCurrentRecord);
+						}
+						else
+							if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
+					},
+					function (error) {
+						console.log("\n [BPFV] Error during ProcessBusinessProcessFlowStageIdByCurrentRecordId for bpf entity : " + bpfEntitySchemaName + " for record : " + currentRecordId);
+					}
+				);
 			}
-		);
+		});
+	
 	}
 	private GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord: string, targetEntityLogicalName: string, currentRecordId: string, progresDiv: HTMLDivElement, activeStageIdCurrentRecord: string) {
 		//Create Array to contain all Stage Name.
@@ -294,22 +305,11 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	}
 	private ProcessAllRecordsInDataSet(jsonParametersBPF: any, targetEntityLogicalName: string) {
 		for (let currentRecordId of this._context.parameters.dataSet.sortedRecordIds) {
-			console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
-
+			console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);		
 			let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
 			//We're searching for each bpfs mentionned in the parameters until we found the active BPF for this opportunity.
 			var iteration = 0;
-			let _this = this;
-			jsonParametersBPF.bpfs.forEach(function (element: any) {
-				if (!foundBPF) {
-					iteration++;
-					//Get plural Schema Name of the BPF and the field schema name where we can link to the target record.
-					let bpfEntitySchemaName: string = element.bpfEntitySchemaName;
-					let lookupFieldSchemaName: string = element.lookupFieldSchemaName;
-					//Trying to retrieve the bpf entity.
-					_this.ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId, bpfEntitySchemaName, lookupFieldSchemaName, iteration, jsonParametersBPF, targetEntityLogicalName, foundBPF);
-				}
-			});
+			this.ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId,iteration,jsonParametersBPF,targetEntityLogicalName,foundBPF);
 		}
 	}
 	private GetAllParameters() {
