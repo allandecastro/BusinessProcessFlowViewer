@@ -17,10 +17,10 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	private _pulseColor: string;
 	private _viewId: string;
 	private _listComponents: Array<number | HTMLDivElement>[] = new Array();
-	private _numberOfRecords:number;
-
+	private _numberOfRecords: number;
 	// Flag if control view has been rendered
 	private _controlViewRendered: Boolean;
+
 	constructor() {
 
 	}
@@ -51,11 +51,10 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
+		//We make sure that the data set loading is finished.
 		if (!this._controlViewRendered && !context.parameters.dataSet.loading) {
 			this._controlViewRendered = true;
 			this._context = context;
-			//We make sure that the data set loading is finished.
-
 			//We remove all items to make sure that if you perform a refresh, it will not add the records again.
 			this.RemoveChildItems();
 			//Parse the Parameters and make sure it contains datas.
@@ -67,10 +66,32 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 			//Start the process for each records in the dataset (subgrid,view...).
 			let targetEntityLogicalName: string = context.parameters.dataSet.getTargetEntityType();
 			this.ProcessAllRecordsInDataSet(jsonParametersBPF, targetEntityLogicalName);
-
 		}
 	}
-	public ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, entityName: string, filterFieldSchemaName: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean,order:number) {
+	private ProcessAllRecordsInDataSet(jsonParametersBPF: any, targetEntityLogicalName: string) {
+		var order = 1;
+		this._numberOfRecords = this._context.parameters.dataSet.sortedRecordIds.length;
+		console.log("Number Of Records :  " + this._numberOfRecords);
+		for (let currentRecordId of this._context.parameters.dataSet.sortedRecordIds) {
+			console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
+			let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
+			//We're searching for each bpfs mentionned in the parameters until we found the active BPF for this opportunity.
+			var iteration = 0;
+			let _this = this;
+			jsonParametersBPF.bpfs.forEach(function (element: any) {
+				if (!foundBPF) {
+					iteration++;
+					//Get plural Schema Name of the BPF and the field schema name where we can link to the target record.
+					let bpfEntitySchemaName: string = element.bpfEntitySchemaName;
+					let lookupFieldSchemaName: string = element.lookupFieldSchemaName;
+					//Trying to retrieve the bpf entity.
+					_this.ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId, bpfEntitySchemaName, lookupFieldSchemaName, iteration, jsonParametersBPF, targetEntityLogicalName, foundBPF, order);
+				}
+			});
+			order++;
+		}
+	}
+	private ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId: string, entityName: string, filterFieldSchemaName: string, iteration: number, jsonParametersBPF: any, targetEntityLogicalName: string, foundBPF: boolean, order: number) {
 
 		let activeStage: string[] = new Array();
 		var _this = this;
@@ -116,7 +137,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 					let activeStageIdCurrentRecord: string = activeStage[0];
 					let processIdCurrentRecord: string = activeStage[1];
 					//Retrieve all Stages (name and id) for this BPF.					
-					_this.GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord, targetEntityLogicalName, currentRecordId, progresDiv, activeStageIdCurrentRecord,order);
+					_this.GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord, targetEntityLogicalName, currentRecordId, progresDiv, activeStageIdCurrentRecord, order);
 				}
 				else
 					if (iteration == jsonParametersBPF.bpfs.length) console.log("\n [BPFV] Don't find the good BPF for : " + currentRecordId + ". You need to add it to the Parameters BPF.");
@@ -126,7 +147,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 			}
 		);
 	}
-	private GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord: string, targetEntityLogicalName: string, currentRecordId: string, progresDiv: HTMLDivElement, activeStageIdCurrentRecord: string,order:number) {
+	private GetAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord: string, targetEntityLogicalName: string, currentRecordId: string, progresDiv: HTMLDivElement, activeStageIdCurrentRecord: string, order: number) {
 		//Create Array to contain all Stage Name.
 		let stage: string[] = new Array();
 		//Create Array to contain all Stage Id.
@@ -190,151 +211,21 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 				var test = [order, progresDiv]
 				_this._listComponents.push(test);
 				console.log("param array:  " + _this._listComponents);
-				if (_this._numberOfRecords==_this._listComponents.length)
-				{
+				if (_this._numberOfRecords == _this._listComponents.length) {
 					//add to container
-					_this._listComponents.sort().forEach((value)=>{
-						console.log("sort value 0 : "+value[0]+"value 1:  "+value[1]);
+					_this._listComponents.sort().forEach((value) => {
+						console.log("sort value 0 : " + value[0] + "value 1:  " + value[1]);
 						_this._container.appendChild(value[1] as HTMLDivElement);
-					
+
 					})
 				}
-				//_this._container.appendChild(progresDiv);
-
-				//test si on fais les cards ou pas
-				//_this.GetFieldsValueAndCreateDomCards(targetEntityLogicalName, currentRecordId);
 			},
 			function (error) {
 				console.log("\n [BPFV] Error during getAllBusinessProcessFlowStageByProcessId for process id : " + processIdCurrentRecord);
 			}
 		);
 	}
-	private GetFieldsValueAndCreateDomCards(targetEntityLogicalName: string, currentRecordId: string) {
 
-		//Card PART Creation
-		let cardDiv: HTMLDivElement = document.createElement("div");
-		cardDiv.classList.add("card");
-		cardDiv.classList.add(currentRecordId);
-
-		let cardDivHeader: HTMLDivElement = document.createElement("div");
-		cardDivHeader.classList.add("cardHeader");
-		var _this = this;
-		this._context.webAPI.retrieveRecord(targetEntityLogicalName, currentRecordId, "?$select=name,estimatedclosedate,estimatedvalue,modifiedon,_ownerid_value").then(
-			function success(result) {
-				var estimatedclosedate = result["estimatedclosedate"];
-				var estimatedvalue_formatted = result["estimatedvalue@OData.Community.Display.V1.FormattedValue"];
-				var modifiedon_formatted = result["modifiedon@OData.Community.Display.V1.FormattedValue"];
-				var _ownerid_value_formatted = result["_ownerid_value@OData.Community.Display.V1.FormattedValue"];
-				cardDivHeader.innerText = result["name"];
-
-				cardDiv.appendChild(cardDivHeader);
-
-				let cardDivSeparator: HTMLSpanElement = document.createElement("span");
-				cardDivSeparator.classList.add("separator");
-				cardDiv.appendChild(cardDivSeparator);
-
-				let cardDivContent: HTMLSpanElement = document.createElement("div");
-				cardDivContent.classList.add("cardContent");
-				cardDiv.appendChild(cardDivContent);
-
-				//pour un field
-				let cardDivContentData: HTMLSpanElement = document.createElement("div");
-				cardDivContentData.classList.add("cardData");
-				cardDivContent.appendChild(cardDivContentData);
-				//label et data en span
-
-				let fieldLabel: HTMLSpanElement = document.createElement("span");
-				fieldLabel.classList.add("fieldLabel");
-				fieldLabel.innerText = "Estimated Value: ";
-				cardDivContentData.appendChild(fieldLabel);
-
-
-				let fieldData: HTMLSpanElement = document.createElement("span");
-				fieldData.classList.add("fieldData");
-				fieldData.innerText = estimatedvalue_formatted;
-				cardDivContentData.appendChild(fieldData);
-
-				//pour un autre  field
-				let cardDivContentData2: HTMLSpanElement = document.createElement("div");
-				cardDivContentData2.classList.add("cardData");
-				cardDivContent.appendChild(cardDivContentData2);
-
-				let fieldLabel2: HTMLSpanElement = document.createElement("span");
-				fieldLabel2.classList.add("fieldLabel");
-				fieldLabel2.innerText = "Estimated Close Date: ";
-				cardDivContentData2.appendChild(fieldLabel2);
-
-
-				let fieldData2: HTMLSpanElement = document.createElement("span");
-				fieldData2.classList.add("fieldData");
-				fieldData2.innerText = estimatedclosedate;
-				cardDivContentData2.appendChild(fieldData2);
-
-				//un aute
-				let cardDivContentData3: HTMLSpanElement = document.createElement("div");
-				cardDivContentData3.classList.add("cardData");
-				cardDivContent.appendChild(cardDivContentData3);
-
-				let fieldLabel3: HTMLSpanElement = document.createElement("span");
-				fieldLabel3.classList.add("fieldLabel");
-				fieldLabel3.innerText = "Last modification: ";
-				cardDivContentData3.appendChild(fieldLabel3);
-
-
-				let fieldData3: HTMLSpanElement = document.createElement("span");
-				fieldData3.classList.add("fieldData");
-				fieldData3.innerText = modifiedon_formatted;
-				cardDivContentData3.appendChild(fieldData3);
-				//aute
-				let cardDivContentData4: HTMLSpanElement = document.createElement("div");
-				cardDivContentData4.classList.add("cardData");
-				cardDivContent.appendChild(cardDivContentData4);
-
-				let fieldLabel4: HTMLSpanElement = document.createElement("span");
-				fieldLabel4.classList.add("fieldLabel");
-				fieldLabel4.innerText = "Owner: ";
-				cardDivContentData4.appendChild(fieldLabel4);
-
-
-				let fieldData5: HTMLSpanElement = document.createElement("span");
-				fieldData5.classList.add("fieldData");
-				fieldData5.innerText = _ownerid_value_formatted;
-				cardDivContentData4.appendChild(fieldData5);
-				_this._container.appendChild(cardDiv);
-				;
-			},
-			function (error) {
-				console.log("\n [BPFV] Error during GetFieldsValueAndCreateDomCards for record id : " + currentRecordId);
-			}
-		);
-	}
-	private ProcessAllRecordsInDataSet(jsonParametersBPF: any, targetEntityLogicalName: string) {
-		var order=1;
-		this._numberOfRecords=this._context.parameters.dataSet.sortedRecordIds.length;
-		console.log("Number Of Records :  "+this._numberOfRecords);
-		for (let currentRecordId of this._context.parameters.dataSet.sortedRecordIds) {
-			console.log("[BPFV][UPDATEVIEW] Record Id : " + currentRecordId);
-
-			let foundBPF: boolean = false; //Boolean to avoid looking for a BPF when we have already found the one used.			
-			//We're searching for each bpfs mentionned in the parameters until we found the active BPF for this opportunity.
-			var iteration = 0;
-			let _this = this;
-			jsonParametersBPF.bpfs.forEach(function (element: any) {
-				if (!foundBPF) {
-					iteration++;
-					//Get plural Schema Name of the BPF and the field schema name where we can link to the target record.
-					let bpfEntitySchemaName: string = element.bpfEntitySchemaName;
-					let lookupFieldSchemaName: string = element.lookupFieldSchemaName;
-					//Trying to retrieve the bpf entity.
-					_this.ProcessBusinessProcessFlowStageIdByCurrentRecordId(currentRecordId, bpfEntitySchemaName, lookupFieldSchemaName, iteration, jsonParametersBPF, targetEntityLogicalName, foundBPF,order);
-				}
-			});
-			order++;
-		}	
-		console.log("avnat test..");
-		console.log("PARAM FINISHED: " + this._listComponents.length);
-		console.log("this._listComponents[0][0] == "+this._listComponents[0][0])
-	}
 	private GetAllParameters() {
 		this._parametersBPF = this._context.parameters.parametersBPF == undefined ? "" : this._context.parameters.parametersBPF.raw;
 		this._viewId = this._context.parameters.dataSet.getViewId() == undefined ? "" : this._context.parameters.dataSet.getViewId();
