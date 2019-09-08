@@ -252,12 +252,10 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 		this._notActiveTextColor = this._context.parameters.notActiveTextColor == undefined ? "" : this._context.parameters.notActiveTextColor.raw;
 		this._progressTrackLineColor = this._context.parameters.progressTrackLineColor == undefined ? "" : this._context.parameters.progressTrackLineColor.raw;
 		this._pulseColor = this._context.parameters.pulseColor == undefined ? "" : this._context.parameters.pulseColor.raw;
-		if (this._context.parameters.displayEntityName != null) {
-			this._displayEntityName = this._context.parameters.displayEntityName.raw == "true" ? true : false;
-		}
+		if (this._context.parameters.displayEntityName != null)
+			this._displayEntityName = this._context.parameters.displayEntityName.raw == "true" ? true : false;	
 		else
 			this._displayEntityName = false;
-		console.log(this._displayEntityName);
 	}
 	/**
 	 * Used to remove child dom element.
