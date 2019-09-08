@@ -12,6 +12,7 @@
     <property name="notActiveTextColor" display-name-key="notActiveTextColor" description-key="This Hex Color define the text color of the not active stages." of-type="SingleLine.Text" usage="input" required="true" default-value='#666666'/>
     <property name="progressTrackLineColor" display-name-key="progressTrackLineColor" description-key="This Hex Color define the background color of the progress line." of-type="SingleLine.Text" usage="input" required="true" default-value='#DFE3E4'/>
     <property name="pulseColor" display-name-key="pulseColor" description-key="This Hex Color define the pulse color. If empty pulse is not enabled." of-type="SingleLine.Text" usage="input" required="false" default-value='#95c6e6'/>
+    <property name="displayEntityName" display-name-key="displayEntityName" description-key="This value is used to display or not the name of the entity." of-type="SingleLine.Text" usage="input" required="false" default-value='true' />
     <resources>
       <code path="index.ts" order="1"/>
       <css path="css/style.css" order="1" />
