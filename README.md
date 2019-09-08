@@ -1,13 +1,17 @@
 # BusinessProcessFlowViewer
  
 Here is my second Power Apps Component using PowerApps Component framework!
+## Purpose
 
-It will display BPF stage of any records type.
+This component displays BPFs with all process stages of entities from a grid/views. 
 
 Support any entities (OOB and custom) and any BPF (OOB and custom).
 
-# Screenshot
+## Screenshot
 ![alt text](https://github.com/allandecastro/BusinessProcessFlowViewer/blob/master/BusinessProcessFlowViewer.gif?raw=true)
+
+
+
 
 # Installation
 
@@ -21,22 +25,27 @@ Then you must follow these steps:
 
 * Click to managed properties of the subgrid, and add the custom Control "BusinessProcessFlowViewer"
 
-* You can see that they are severals parameters (with default values), it allows you to change color and to configure the component properly
+* You can see that they are severals parameters (with default values), it allows you to change color and to configure the component properly.You can refer to the configuration section.
 
-* Here are the list of all parameters to be set : 
+## Configuration
 
-  * parametersBPF: {"bpfs":[{"bpfEntityPluralSchemaName":"opportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"},"bpfEntityPluralSchemaName":"leadtoopportunitysalesprocesses","lookupFieldSchemaName":"_opportunityid_value"}]}
+This is the list of parameters that can be set on the control
 
-  * completedColor This Hex Color define the background color of the completed stages.
-  * completedTextColor This Hex Color define the  text color of the completed stages.
-  * activeColor: This Hex Color define the background color of the active stage.
-  * activeTextColor: This Hex Color define the text color of the active stage.
-  * notActiveColor: This Hex Color define the background color of the not active stages.
-  * notActiveTextColor: This Hex Color define the text color of the not active stages.
-  * progressTrackLineColor: This Hex Color define the background color of the progress line.
-  * pulseColor:This Hex Color define the pulse color. If empty pulse is not enabled.
+|Parameter|Description|Required|Example|
+|---------|-----------|:----:|:---:|
+|**parametersBPF**|Attribute to use as label for the checkbox|X|"{"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"},  {"bpfEntitySchemaName":"leadtoopportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"}]}|
+|**completedColor**|This Hex Color define the background color of the completed stages.|X|#090|
+|**completedTextColor**|This Hex Color define the  text color of the completed stages.|X|#090|
+|**activeColor**|This Hex Color define the background color of the active stage.|X|#777|
+|**activeTextColor**|This Hex Color define the text color of the active stage.|X|#2183DD|
+|**notActiveColor**|This Hex Color define the background color of the not active stages.|X|#DFE3E4|
+|**notActiveTextColor**|This Hex Color define the text color of the not active stages.|X|#666666|
+|**progressTrackLineColor**|This Hex Color define the background color of the progress line.|X|#DFE3E4|
+|**pulseColorr**|This Hex Color define the background color of the progress line.||#95c6e6|
+|**displayEntityName**|This value is used to display or not the name of the entity.||true|
 
-# Get required tools
+# Package a component
+## Get required tools
 
 To use Microsoft PowerApps CLI, do the following:
 
@@ -54,7 +63,7 @@ Be sure to update your Microsoft PowerApps CLI to the latest version:
 ```bash
 pac install latest
 ```
-# Build the control
+## Build the control
 
 * Clone the repo/ download the zip file.
 * Navigate to ./BusinessProcessFlowViewer/ folder.
@@ -67,9 +76,9 @@ Then run the command:
 ```bash
 npm run start
 ```
-# Build the solution
+## Build the solution
 
-* Create a new solution folder and open the Developer command prompt.
+* Create a new solution folder (eg. SolutionFolder) and open the Developer command prompt.
 * Change the directory to the newly created folder in previous step.
 * Init the future solution:
 ```bash
