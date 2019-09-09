@@ -44,7 +44,7 @@ This is the list of parameters that can be set on the control
 |**pulseColorr**|This Hex Color define the background color of the progress line.||#95c6e6|
 |**displayEntityName**|This value is used to display or not the name of the entity.||true|
 
-### Configuration Example
+### Configuration Example(s)
 
 Here are some examples with different parameters:
 
