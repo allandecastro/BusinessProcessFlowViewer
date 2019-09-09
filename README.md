@@ -33,7 +33,7 @@ This is the list of parameters that can be set on the control
 
 |Parameter|Description|Required|Example|
 |---------|-----------|:----:|:---:|
-|**parametersBPF**|Attribute to use as label for the checkbox|X|"{"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"},  {"bpfEntitySchemaName":"leadtoopportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"}]}|
+|**parametersBPF**|Attribute to use as label for the checkbox|X|```{"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"},  {"bpfEntitySchemaName":"leadtoopportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"}]} ```|
 |**completedColor**|This Hex Color define the background color of the completed stages.|X|#090|
 |**completedTextColor**|This Hex Color define the  text color of the completed stages.|X|#090|
 |**activeColor**|This Hex Color define the background color of the active stage.|X|#777|
@@ -48,7 +48,71 @@ This is the list of parameters that can be set on the control
 
 Here are some examples with different parameters:
 
-# Package a component
+Imagine that we want to install this component on an opportunity grid.
+
+The first step is to correctly fill in the parametersBPF in a JSON format. This JSON follows the following format:
+```json
+{
+  "bpfs": [
+    {
+      "bpfEntitySchemaName": "SCHEMA_NAME_BPF_ENTITY",
+      "lookupFieldSchemaName": "SCHEMA_NAME_LOOKUP_FIELD"
+    },
+    {
+      "bpfEntitySchemaName": "SCHEMA_NAME_BPF_ENTITY_2",
+      "lookupFieldSchemaName": "SCHEMA_NAME_LOOKUP_FIELD_2"
+    }
+  ]
+}
+```
+
+You can see that several BPFs can be managed if different BPFs are used for the same entity.
+The first parameter "bpfEntitySchemaName" corresponds to the technical name of the BPF entity.
+
+The second parameter "lookupFieldSchemaName" corresponds to the technical name of the field on the BPF entity wich relate to the target entity(here, the opportunity).
+
+In case we use standard BPFs (out of the box), we will have the following parameter:
+```json
+{
+  "bpfs": [
+    {
+      "bpfEntitySchemaName": "opportunitysalesprocess",
+      "lookupFieldSchemaName": "_opportunityid_value"
+    },
+    {
+      "bpfEntitySchemaName": "leadtoopportunitysalesprocess",
+      "lookupFieldSchemaName": "_opportunityid_value"
+    }
+  ]
+}
+```
+
+If you have created your own BPF, you must therefore adapt this setting. 
+For example, if you have created a solution with the prefix "adc_" and thus creates a custombpfviewer BPF.
+The technical name of the BPF entity will be "adc_custombpfviewer".
+
+We can look at the name of the technical field wich relate to the target entity by opening the previously created BPF entity and note its name: bpf_opportunityid. This will give _bpf_opportunityid_value.
+
+The parameter will be composed as follows:
+
+```json
+{
+  "bpfs": [
+    {
+      "bpfEntitySchemaName": "adc_custombpfviewer",
+      "lookupFieldSchemaName": "_bpf_opportunityid_value"
+    }
+  ]
+}
+```
+The next parameters allow to manage the visual aspect of the component.
+
+
+
+Note that you can therefore add this component to several grids of the form.
+
+# Want to Package a component ?
+
 ## Get required tools
 
 To use Microsoft PowerApps CLI, do the following:
