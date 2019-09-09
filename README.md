@@ -25,7 +25,7 @@ Then you must follow these steps:
 
 * Click to managed properties of the subgrid, and add the custom Control "BusinessProcessFlowViewer"
 
-* You can see that they are severals parameters (with default values), it allows you to change color and to configure the component properly.You can refer to the configuration section.
+* You can see that they are severals parameters (with default values), it allows you to change color and to configure the component properly. You can refer to the configuration section.
 
 ## Configuration
 
@@ -69,7 +69,7 @@ The first step is to correctly fill in the parametersBPF in a JSON format. This 
 You can see that several BPFs can be managed if different BPFs are used for the same entity.
 The first parameter "bpfEntitySchemaName" corresponds to the technical name of the BPF entity.
 
-The second parameter "lookupFieldSchemaName" corresponds to the technical name of the field on the BPF entity wich relate to the target entity(here, the opportunity).
+The second parameter "lookupFieldSchemaName" corresponds to the technical name of the field on the BPF entity which relates to the target entity(here, the opportunity).
 
 In case we use standard BPFs (out of the box), we will have the following parameter:
 ```json
@@ -91,7 +91,7 @@ If you have created your own BPF, you must therefore adapt this setting.
 For example, if you have created a solution with the prefix "adc_" and thus creates a custombpfviewer BPF.
 The technical name of the BPF entity will be "adc_custombpfviewer".
 
-We can look at the name of the technical field wich relate to the target entity by opening the previously created BPF entity and note its name: bpf_opportunityid. This will give _bpf_opportunityid_value.
+We can look at the name of the technical field which relates to the target entity by opening the previously created BPF entity and note its name: bpf_opportunityid. This will give _bpf_opportunityid_value.
 
 The parameter will be composed as follows:
 
