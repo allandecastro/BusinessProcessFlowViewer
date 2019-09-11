@@ -128,17 +128,11 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 						let divNameField: HTMLDivElement = document.createElement("div");
 						divNameField.classList.add("fieldName");
 						divNameField.innerText = entityReference.name;
+
 						divContainer.appendChild(divNameField);
 					}
-					let progresDiv: HTMLDivElement = document.createElement("div");
-					progresDiv.classList.add("progress");
-					progresDiv.classList.add("progress" + this._viewId);
-					let progresTrackDiv: HTMLDivElement = document.createElement("div");
-					progresTrackDiv.classList.add("progress-track");
-					progresTrackDiv.classList.add("progress-track" + this._viewId);
-					progresDiv.appendChild(progresTrackDiv)
 					let entityType: string = <string>entityReference.entityType;
-					progresDiv.onclick = () => {
+					divContainer.onclick = () => {
 
 						let entityFormOptions = {
 							entityName: entityType,
@@ -147,6 +141,13 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 						}
 						this._context.navigation.openForm(entityFormOptions);
 					};
+					let progresDiv: HTMLDivElement = document.createElement("div");
+					progresDiv.classList.add("progress");
+					progresDiv.classList.add("progress" + this._viewId);
+					let progresTrackDiv: HTMLDivElement = document.createElement("div");
+					progresTrackDiv.classList.add("progress-track");
+					progresTrackDiv.classList.add("progress-track" + this._viewId);
+					progresDiv.appendChild(progresTrackDiv)
 					//Get process Unique Identifier and Active Stage Unique identifier for this BPF instance.
 					let activeStageIdCurrentRecord: string = activeStage[0];
 					let processIdCurrentRecord: string = activeStage[1];
@@ -253,7 +254,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 		this._progressTrackLineColor = this._context.parameters.progressTrackLineColor == undefined ? "" : this._context.parameters.progressTrackLineColor.raw;
 		this._pulseColor = this._context.parameters.pulseColor == undefined ? "" : this._context.parameters.pulseColor.raw;
 		if (this._context.parameters.displayEntityName != null)
-			this._displayEntityName = this._context.parameters.displayEntityName.raw == "true" ? true : false;	
+			this._displayEntityName = this._context.parameters.displayEntityName.raw == "true" ? true : false;
 		else
 			this._displayEntityName = false;
 	}
