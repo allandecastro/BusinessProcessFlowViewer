@@ -107,6 +107,8 @@ The parameter will be composed as follows:
 ```
 The next parameters allow to manage the visual aspect of the component.
 
+#### Examples
+
 ![alt text](https://github.com/allandecastro/BusinessProcessFlowViewer/blob/master/ConfigurationExample.png?raw=true)
 
 Note that you can therefore add this component to several grids of the form.
