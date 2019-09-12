@@ -115,7 +115,7 @@ The next parameters allow to manage the visual aspect of the component.
 
 Note that you can therefore add this component to several grids of the form.
 
-# Want to Package a component ?
+# How to Package a component ?
 
 ## Get required tools
 
