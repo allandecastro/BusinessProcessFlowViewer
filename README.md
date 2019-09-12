@@ -35,7 +35,7 @@ This is the list of parameters that can be set on the control
 
 |Parameter|Description|Required|Example|
 |---------|-----------|:----:|:---:|
-|**parametersBPF**|Attribute to use as label for the checkbox|X|```{"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"},  {"bpfEntitySchemaName":"leadtoopportunitysalesprocess","lookupFieldSchemaName":"_opportunityid_value"}]} ```|
+|**parametersBPF**|Attribute to use as label for the checkbox|X|``` {"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess", "lookupFieldSchemaName":"_opportunityid_value"}, {"bpfEntitySchemaName":"leadtoopportunitysalesprocess", "lookupFieldSchemaName":"_opportunityid_value"}]} ```|
 |**completedColor**|This Hex Color define the background color of the completed stages.|X|#090|
 |**completedTextColor**|This Hex Color define the  text color of the completed stages.|X|#090|
 |**activeColor**|This Hex Color define the background color of the active stage.|X|#777|
