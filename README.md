@@ -4,6 +4,7 @@ Here is my second Power Apps Component using PowerApps Component framework!
 ## Purpose
 
 This component displays BPFs with all process stages of entities from a grid/views. 
+You can also click on it to open the record.
 
 Support any entities (OOB and custom) and any BPF (OOB and custom).
 
