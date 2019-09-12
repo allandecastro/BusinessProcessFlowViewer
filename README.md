@@ -43,8 +43,8 @@ This is the list of parameters that can be set on the control
 |**notActiveColor**|This Hex Color define the background color of the not active stages.|X|#DFE3E4|
 |**notActiveTextColor**|This Hex Color define the text color of the not active stages.|X|#666666|
 |**progressTrackLineColor**|This Hex Color define the background color of the progress line.|X|#DFE3E4|
-|**pulseColorr**|This Hex Color define the background color of the progress line.||#95c6e6|
-|**displayEntityName**|This value is used to display or not the name of the entity.||true|
+|**pulseColorr**|This Hex Color define the background color of the progress line. If this parameter is empty, the animation will not be displayed||#95c6e6|
+|**displayEntityName**|This value is used to display or not the name of the entity. If it is not equal to "true" the name will not be displayed.||true|
 
 ### Configuration Example(s)
 
