@@ -1,0 +1,241 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.2": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        }
+      },
+      "BusinessProcessFlow/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        }
+      },
+      "BusinessProcessFlow/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x64": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        }
+      },
+      "BusinessProcessFlow/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.2/win-x86": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        }
+      },
+      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "build/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props": {},
+          "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
+        }
+      },
+      "BusinessProcessFlow/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.2",
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessProcessFlow.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "sha512": "w/nu1AVrY7ZsYrxaqFEVKXnNCUPJiTZ+p3DqBKx0jy10YtNTYuzdc2Nz1iiF70bgXuWGn7xo0LTcVA99gWXYsQ==",
+      "type": "package",
+      "path": "microsoft.powerapps.msbuild.pcf/0.4.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "3rdPartyNotice.txt",
+        "LICENSE.txt",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.props",
+        "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
+        "microsoft.powerapps.msbuild.pcf.0.4.3.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.nuspec"
+      ]
+    },
+    "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+      "sha512": "THbjnNJCpfVbgkqJRqWZz045eXUjMUfHqjmld9I2DttD+UPV6daUhw6vA51wDW62zuvyYhcklQmSXCReL7mWfQ==",
+      "type": "package",
+      "path": "microsoft.powerapps.msbuild.solution/0.4.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "3rdPartyNotice.txt",
+        "LICENSE.txt",
+        "build/Microsoft.PowerApps.MSBuild.Solution.props",
+        "build/Microsoft.PowerApps.MSBuild.Solution.targets",
+        "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props",
+        "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets",
+        "content/SolutionPackager.exe",
+        "content/SolutionPackager.exe.config",
+        "content/System.ValueTuple.dll",
+        "microsoft.powerapps.msbuild.solution.0.4.3.nupkg.sha512",
+        "microsoft.powerapps.msbuild.solution.nuspec",
+        "tasks/net462/Microsoft.PowerApps.MSBuild.Tasks.dll",
+        "tasks/net462/bolt.module.solution.dll",
+        "tasks/netstandard2.0/Microsoft.PowerApps.MSBuild.Tasks.dll",
+        "tasks/netstandard2.0/bolt.module.solution.dll"
+      ]
+    },
+    "BusinessProcessFlow/1.0.0": {
+      "type": "project",
+      "path": "../BusinessProcessFlow/BusinessProcessFlow.pcfproj",
+      "msbuildProject": "../BusinessProcessFlow/BusinessProcessFlow.pcfproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.2": [
+      "BusinessProcessFlow >= 1.0.0",
+      "Microsoft.PowerApps.MSBuild.Solution >= 0.*"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\allan.de.castro\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\Deployment\\Deployment.cdsproj",
+      "projectName": "Deployment",
+      "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\Deployment\\Deployment.cdsproj",
+      "packagesPath": "C:\\Users\\allan.de.castro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\Deployment\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\allan.de.castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net462"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\allan.de.castro\\Downloads": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net462": {
+          "projectReferences": {
+            "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow\\BusinessProcessFlow.pcfproj": {
+              "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow\\BusinessProcessFlow.pcfproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "net462": {
+        "dependencies": {
+          "Microsoft.PowerApps.MSBuild.Solution": {
+            "target": "Package",
+            "version": "[0.*, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+.divContainer{
+  margin-top: 4%;
+}
+.fieldName{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  margin-top: 2%;
+}
+.progress {
+    position: relative;
+    display: flex;
+    margin-top: 3%;
+  }
+  .progress .progress-track {
+    position: absolute;
+    top: 12%;
+    width: 100%;
+    height: 5px;
+  }
+  .progress .progress-step {
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+  }
+  .progress .progress-step:last-child:after {
+    display: none;
+  }
+  .progress .progress-step:before {
+    content: "";
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 100%;
+    color: #fff;
+  }
+  .progress .progress-step:after {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 0%;
+    transition: width 1s ease-in;
+    height: 5px;
+    background: #dfe3e4;
+  }
+
+  .progress .progress-step.is-active:before {
+    content: "";
+  }
+  .progress .progress-step.is-notactive:before {
+    content: "";
+  }
+  .progress .progress-step.is-complete:before {
+    font-size: 10px;
+    color: #fff;
+    border: 4px solid transparent;
+  }
+  .progress .progress-step.is-complete:after {
+    animation: nextStep 1s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes nextStep {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  .container {
+    margin: 50px 100px;
+  }

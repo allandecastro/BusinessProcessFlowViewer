@@ -1,0 +1,18 @@
+2019-09-11 22:06:48.311 - Info	
+Packing C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\Deployment\obj\Debug\ to bin\Debug\Deployment.zip
+
+2019-09-11 22:06:48.331 - Info	Processing Component: Entities
+2019-09-11 22:06:48.335 - Info	Processing Component: Roles
+2019-09-11 22:06:48.337 - Info	Processing Component: Workflows
+2019-09-11 22:06:48.339 - Info	Processing Component: FieldSecurityProfiles
+2019-09-11 22:06:48.339 - Info	Processing Component: Templates
+2019-09-11 22:06:48.340 - Info	Processing Component: EntityMaps
+2019-09-11 22:06:48.341 - Info	Processing Component: EntityRelationships
+2019-09-11 22:06:48.346 - Info	Processing Component: OrganizationSettings
+2019-09-11 22:06:48.348 - Info	Processing Component: optionsets
+2019-09-11 22:06:48.348 - Info	Processing Component: CustomControls
+2019-09-11 22:06:48.364 - Info	 - BusinessProcessFlowViewer.BusinessProcessFlowViewer
+2019-09-11 22:06:48.455 - Info	Processing Component: EntityDataProviders
+2019-09-11 22:06:48.490 - Info	
+Managed Pack complete.
+
