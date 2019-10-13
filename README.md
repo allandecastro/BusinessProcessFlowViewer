@@ -1,3 +1,8 @@
+<p align="center">
+<a href="https://github.com/allandecastro/BusinessProcessFlowViewer/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"/></a>
+</p>
+
+
 # BusinessProcessFlowViewer
  
 Here is my second Power Apps Component using PowerApps Component framework!
