@@ -126,17 +126,12 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 						divContainer.appendChild(divNameField);
 					}
 					divContainer.onclick = () => {
-						console.log("CLick on :"+ entityReference.id);
 						let entityFormOptions = {
-							entityName: <string>entityReference.etn== undefined ? "incident" : <string>entityReference.etn,
+							entityName: <string>entityReference.etn,
 							entityId: entityReference.id.toString(),
 							openInNewWindow: true
 						}
-						console.log("Object: "+entityFormOptions);
-						console.log("Object Etn : "+ <string>entityReference.etn);
-						console.log("Object Id: "+ entityReference.id.toString());
 						this._context.navigation.openForm(entityFormOptions);
-						console.log("Open :"+ entityReference.id);
 					};
 					let progresDiv: HTMLDivElement = document.createElement("div");
 					progresDiv.classList.add("progress");
