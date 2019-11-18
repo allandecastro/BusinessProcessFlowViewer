@@ -2,13 +2,13 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.2": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -19,28 +19,28 @@
           "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
         }
       },
-      "BusinessProcessFlow/1.0.0": {
+      "BusinessProcessFlowViewer/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.2",
         "dependencies": {
-          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+          "Microsoft.PowerApps.MSBuild.Pcf": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.2/win": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -51,28 +51,28 @@
           "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
         }
       },
-      "BusinessProcessFlow/1.0.0": {
+      "BusinessProcessFlowViewer/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.2",
         "dependencies": {
-          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+          "Microsoft.PowerApps.MSBuild.Pcf": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.2/win-x64": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -83,28 +83,28 @@
           "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
         }
       },
-      "BusinessProcessFlow/1.0.0": {
+      "BusinessProcessFlowViewer/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.2",
         "dependencies": {
-          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+          "Microsoft.PowerApps.MSBuild.Pcf": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         }
       }
     },
     ".NETFramework,Version=v4.6.2/win-x86": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -115,26 +115,26 @@
           "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets": {}
         }
       },
-      "BusinessProcessFlow/1.0.0": {
+      "BusinessProcessFlowViewer/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.2",
         "dependencies": {
-          "Microsoft.PowerApps.MSBuild.Pcf": "0.0.0"
+          "Microsoft.PowerApps.MSBuild.Pcf": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessProcessFlow.dll": {}
+          "bin/placeholder/BusinessProcessFlowViewer.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
-      "sha512": "w/nu1AVrY7ZsYrxaqFEVKXnNCUPJiTZ+p3DqBKx0jy10YtNTYuzdc2Nz1iiF70bgXuWGn7xo0LTcVA99gWXYsQ==",
+    "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "sha512": "/fs0GZo9HewWjfgkEffHfYrH/q/cq4pW2iVEI0YelEVVFdeB+cYUuSQR0iXaEkSDylxPB0dpgd3ZdgJ7a0TuEg==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.pcf/0.4.3",
+      "path": "microsoft.powerapps.msbuild.pcf/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -142,14 +142,14 @@
         "LICENSE.txt",
         "build/Microsoft.PowerApps.MSBuild.Pcf.props",
         "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
-        "microsoft.powerapps.msbuild.pcf.0.4.3.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.1.0.6.nupkg.sha512",
         "microsoft.powerapps.msbuild.pcf.nuspec"
       ]
     },
-    "Microsoft.PowerApps.MSBuild.Solution/0.4.3": {
-      "sha512": "THbjnNJCpfVbgkqJRqWZz045eXUjMUfHqjmld9I2DttD+UPV6daUhw6vA51wDW62zuvyYhcklQmSXCReL7mWfQ==",
+    "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
+      "sha512": "5qO7wz7TFY9mPdKwSSIRELrwWep0+jLX+BVDpszMd+4dWZXcT8ayuEBa+vpSDqaOfFBUINRNdba5Vm3BYSxo6Q==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.solution/0.4.3",
+      "path": "microsoft.powerapps.msbuild.solution/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -159,10 +159,17 @@
         "build/Microsoft.PowerApps.MSBuild.Solution.targets",
         "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props",
         "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets",
+        "content/Microsoft.ApplicationInsights.dll",
+        "content/Microsoft.PowerApps.AppInsights.BatchedTelemetryChannel.dll",
         "content/SolutionPackager.exe",
         "content/SolutionPackager.exe.config",
+        "content/SolutionPackagerLib.dll",
         "content/System.ValueTuple.dll",
-        "microsoft.powerapps.msbuild.solution.0.4.3.nupkg.sha512",
+        "content/bolt.cli.dll",
+        "content/bolt.system.dll",
+        "content/pacTelemetryTask.exe",
+        "content/pacTelemetryUpload.exe",
+        "microsoft.powerapps.msbuild.solution.1.0.6.nupkg.sha512",
         "microsoft.powerapps.msbuild.solution.nuspec",
         "tasks/net462/Microsoft.PowerApps.MSBuild.Tasks.dll",
         "tasks/net462/bolt.module.solution.dll",
@@ -170,16 +177,16 @@
         "tasks/netstandard2.0/bolt.module.solution.dll"
       ]
     },
-    "BusinessProcessFlow/1.0.0": {
+    "BusinessProcessFlowViewer/1.0.0": {
       "type": "project",
-      "path": "../BusinessProcessFlow/BusinessProcessFlow.pcfproj",
-      "msbuildProject": "../BusinessProcessFlow/BusinessProcessFlow.pcfproj"
+      "path": "../BusinessProcessFlowViewer/BusinessProcessFlowViewer.pcfproj",
+      "msbuildProject": "../BusinessProcessFlowViewer/BusinessProcessFlowViewer.pcfproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.2": [
-      "BusinessProcessFlow >= 1.0.0",
-      "Microsoft.PowerApps.MSBuild.Solution >= 0.*"
+      "BusinessProcessFlowViewer >= 1.0.0",
+      "Microsoft.PowerApps.MSBuild.Solution >= 1.*"
     ]
   },
   "packageFolders": {
@@ -209,8 +216,8 @@
       "frameworks": {
         "net462": {
           "projectReferences": {
-            "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow\\BusinessProcessFlow.pcfproj": {
-              "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlow\\BusinessProcessFlow.pcfproj"
+            "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj": {
+              "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj"
             }
           }
         }
@@ -221,7 +228,7 @@
         "dependencies": {
           "Microsoft.PowerApps.MSBuild.Solution": {
             "target": "Package",
-            "version": "[0.*, )"
+            "version": "[1.*, )"
           }
         }
       }

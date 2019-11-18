@@ -4,6 +4,6 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)microsoft.powerapps.msbuild.solution\0.4.3\build\Microsoft.PowerApps.MSBuild.Solution.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.powerapps.msbuild.solution\0.4.3\build\Microsoft.PowerApps.MSBuild.Solution.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.powerapps.msbuild.solution\1.0.6\build\Microsoft.PowerApps.MSBuild.Solution.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.powerapps.msbuild.solution\1.0.6\build\Microsoft.PowerApps.MSBuild.Solution.targets')" />
   </ImportGroup>
 </Project>
