@@ -1,19 +1,19 @@
-2019-11-18 14:51:44.756 - Info	
-Packing C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\Deployment\obj\Debug\ to bin\Debug\Deployment.zip
+2020-07-29 23:33:41.041 - Info	
+Packing C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\Deployment\obj\Debug\Metadata to bin\Debug\Deployment.zip
 
-2019-11-18 14:51:44.779 - Info	Processing Component: Entities
-2019-11-18 14:51:44.784 - Info	Processing Component: Roles
-2019-11-18 14:51:44.789 - Info	Processing Component: Workflows
-2019-11-18 14:51:44.792 - Info	Processing Component: FieldSecurityProfiles
-2019-11-18 14:51:44.792 - Info	Processing Component: Templates
-2019-11-18 14:51:44.794 - Info	Processing Component: EntityMaps
-2019-11-18 14:51:44.795 - Info	Processing Component: EntityRelationships
-2019-11-18 14:51:44.811 - Info	Processing Component: OrganizationSettings
-2019-11-18 14:51:44.814 - Info	Processing Component: optionsets
-2019-11-18 14:51:44.815 - Info	Processing Component: CustomControls
-2019-11-18 14:51:44.862 - Info	 - BusinessProcessFlowViewer.BusinessProcessFlowViewer
-2019-11-18 14:51:44.955 - Info	Processing Component: SolutionPluginAssemblies
-2019-11-18 14:51:44.958 - Info	Processing Component: EntityDataProviders
-2019-11-18 14:51:45.022 - Info	
+2020-07-29 23:33:41.095 - Info	Processing Component: Entities
+2020-07-29 23:33:41.112 - Info	Processing Component: Roles
+2020-07-29 23:33:41.128 - Info	Processing Component: Workflows
+2020-07-29 23:33:41.129 - Info	Processing Component: FieldSecurityProfiles
+2020-07-29 23:33:41.129 - Info	Processing Component: Templates
+2020-07-29 23:33:41.132 - Info	Processing Component: EntityMaps
+2020-07-29 23:33:41.133 - Info	Processing Component: EntityRelationships
+2020-07-29 23:33:41.159 - Info	Processing Component: OrganizationSettings
+2020-07-29 23:33:41.163 - Info	Processing Component: optionsets
+2020-07-29 23:33:41.163 - Info	Processing Component: CustomControls
+2020-07-29 23:33:41.217 - Info	 - BusinessProcessFlowViewer.BusinessProcessFlowViewer
+2020-07-29 23:33:41.435 - Info	Processing Component: SolutionPluginAssemblies
+2020-07-29 23:33:41.438 - Info	Processing Component: EntityDataProviders
+2020-07-29 23:33:41.564 - Info	
 Unmanaged Pack complete.
 

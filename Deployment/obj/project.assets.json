@@ -2,13 +2,13 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.2": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.3.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.3.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -34,13 +34,13 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.3.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.3.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -66,13 +66,13 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x64": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.3.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.3.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -98,13 +98,13 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x86": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.3.6": {
         "type": "package",
         "build": {
           "build/_._": {}
         }
       },
-      "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Solution/1.3.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Solution.props": {},
@@ -131,10 +131,10 @@
     }
   },
   "libraries": {
-    "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
-      "sha512": "/fs0GZo9HewWjfgkEffHfYrH/q/cq4pW2iVEI0YelEVVFdeB+cYUuSQR0iXaEkSDylxPB0dpgd3ZdgJ7a0TuEg==",
+    "Microsoft.PowerApps.MSBuild.Pcf/1.3.6": {
+      "sha512": "trvyCMRGUs1Pcrb38+cTwZD1y+bINip8D7T/l0V0a7jf9uWawIadxfoSH3GUKbGdnFvNa4qztbfvLGyZoaA4YQ==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.pcf/1.0.6",
+      "path": "microsoft.powerapps.msbuild.pcf/1.3.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -142,14 +142,14 @@
         "LICENSE.txt",
         "build/Microsoft.PowerApps.MSBuild.Pcf.props",
         "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
-        "microsoft.powerapps.msbuild.pcf.1.0.6.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.1.3.6.nupkg.sha512",
         "microsoft.powerapps.msbuild.pcf.nuspec"
       ]
     },
-    "Microsoft.PowerApps.MSBuild.Solution/1.0.6": {
-      "sha512": "5qO7wz7TFY9mPdKwSSIRELrwWep0+jLX+BVDpszMd+4dWZXcT8ayuEBa+vpSDqaOfFBUINRNdba5Vm3BYSxo6Q==",
+    "Microsoft.PowerApps.MSBuild.Solution/1.3.6": {
+      "sha512": "/AnjQJUS28a+eYuaSicOXT/6j9nR6EjL3IJg3rgm2DeG68+jLeX9rDbAkKOLyFr9yj8fjF5D4BDgDk89WM1v3Q==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.solution/1.0.6",
+      "path": "microsoft.powerapps.msbuild.solution/1.3.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -160,6 +160,7 @@
         "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.props",
         "buildMultiTargeting/Microsoft.PowerApps.MSBuild.Solution.targets",
         "content/Microsoft.ApplicationInsights.dll",
+        "content/Microsoft.PowerApps.AppInsights.BatchedTelemetry.dll",
         "content/Microsoft.PowerApps.AppInsights.BatchedTelemetryChannel.dll",
         "content/SolutionPackager.exe",
         "content/SolutionPackager.exe.config",
@@ -169,7 +170,7 @@
         "content/bolt.system.dll",
         "content/pacTelemetryTask.exe",
         "content/pacTelemetryUpload.exe",
-        "microsoft.powerapps.msbuild.solution.1.0.6.nupkg.sha512",
+        "microsoft.powerapps.msbuild.solution.1.3.6.nupkg.sha512",
         "microsoft.powerapps.msbuild.solution.nuspec",
         "tasks/net462/Microsoft.PowerApps.MSBuild.Tasks.dll",
         "tasks/net462/bolt.module.solution.dll",
@@ -210,7 +211,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\allan.de.castro\\Downloads": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
