@@ -43,6 +43,7 @@ This is the list of parameters that can be set on the control
 |Parameter|Description|Required|Example|
 |---------|-----------|:----:|:---:|
 |**parametersBPF**|Attribute to use as label for the checkbox|X|``` {"bpfs":[{"bpfEntitySchemaName":"opportunitysalesprocess", "lookupFieldSchemaName":"_opportunityid_value"}, {"bpfEntitySchemaName":"leadtoopportunitysalesprocess", "lookupFieldSchemaName":"_opportunityid_value"}]} ```|
+|**stageOrCategory**|This value is used to display the stage or category name.|X|Stage|
 |**completedColor**|This Hex Color define the background color of the completed stages.|X|#090|
 |**completedTextColor**|This Hex Color define the  text color of the completed stages.|X|#090|
 |**activeColor**|This Hex Color define the background color of the active stage.|X|#777|
@@ -51,7 +52,7 @@ This is the list of parameters that can be set on the control
 |**notActiveTextColor**|This Hex Color define the text color of the not active stages.|X|#666666|
 |**progressTrackLineColor**|This Hex Color define the background color of the progress line.|X|#DFE3E4|
 |**pulseColorr**|This Hex Color define the background color of the progress line. If this parameter is empty, the animation will not be displayed||#95c6e6|
-|**displayEntityName**|This value is used to display or not the name of the entity. If it is not equal to "true" the name will not be displayed.||true|
+|**displayEntityName**|This value is used to display or not the name of the entity. If it is not equal to "Yes" the name will not be displayed.|X|Yes|
 
 ### Configuration Example(s)
 
