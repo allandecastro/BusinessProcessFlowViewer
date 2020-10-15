@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "E+wcOop4apa5QVcEpDI31Etf6cEp09iqd/1xNqKodSO5s4hCJsJw+Mj7coLvIXByeM1scNDRfQFbO1xMy840Pg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\BusinessProcessFlowViewerSolution.cdsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\allan.de.castro\\.nuget\\packages\\microsoft.powerapps.msbuild.pcf\\1.3.6\\microsoft.powerapps.msbuild.pcf.1.3.6.nupkg.sha512",
+    "C:\\Users\\allan.de.castro\\.nuget\\packages\\microsoft.powerapps.msbuild.solution\\1.3.6\\microsoft.powerapps.msbuild.solution.1.3.6.nupkg.sha512"
+  ],
+  "logs": []
+}

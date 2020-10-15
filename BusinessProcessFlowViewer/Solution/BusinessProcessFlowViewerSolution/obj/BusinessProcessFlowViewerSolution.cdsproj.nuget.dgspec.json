@@ -1,0 +1,108 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\BusinessProcessFlowViewerSolution.cdsproj": {}
+  },
+  "projects": {
+    "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj",
+        "projectName": "BusinessProcessFlowViewer",
+        "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj",
+        "packagesPath": "C:\\Users\\allan.de.castro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\allan.de.castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "dependencies": {
+            "Microsoft.PowerApps.MSBuild.Pcf": {
+              "target": "Package",
+              "version": "[1.*, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\BusinessProcessFlowViewerSolution.cdsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\BusinessProcessFlowViewerSolution.cdsproj",
+        "projectName": "BusinessProcessFlowViewerSolution",
+        "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\BusinessProcessFlowViewerSolution.cdsproj",
+        "packagesPath": "C:\\Users\\allan.de.castro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\Solution\\BusinessProcessFlowViewerSolution\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\allan.de.castro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "projectReferences": {
+              "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj": {
+                "projectPath": "C:\\Users\\allan.de.castro\\Documents\\GitHub\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer\\BusinessProcessFlowViewer.pcfproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "dependencies": {
+            "Microsoft.PowerApps.MSBuild.Solution": {
+              "target": "Package",
+              "version": "[1.*, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

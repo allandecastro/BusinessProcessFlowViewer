@@ -1,0 +1,19 @@
+2020-10-16 00:54:42.401 - Info	
+Packing C:\Users\allan.de.castro\Documents\GitHub\BusinessProcessFlowViewer\BusinessProcessFlowViewer\Solution\BusinessProcessFlowViewerSolution\obj\Release\Metadata to bin\Release\BusinessProcessFlowViewerSolution.zip
+
+2020-10-16 00:54:42.456 - Info	Processing Component: Entities
+2020-10-16 00:54:42.464 - Info	Processing Component: Roles
+2020-10-16 00:54:42.472 - Info	Processing Component: Workflows
+2020-10-16 00:54:42.472 - Info	Processing Component: FieldSecurityProfiles
+2020-10-16 00:54:42.473 - Info	Processing Component: Templates
+2020-10-16 00:54:42.474 - Info	Processing Component: EntityMaps
+2020-10-16 00:54:42.474 - Info	Processing Component: EntityRelationships
+2020-10-16 00:54:42.484 - Info	Processing Component: OrganizationSettings
+2020-10-16 00:54:42.485 - Info	Processing Component: optionsets
+2020-10-16 00:54:42.486 - Info	Processing Component: CustomControls
+2020-10-16 00:54:42.518 - Info	 - BusinessProcessFlowViewer.BusinessProcessFlowViewer
+2020-10-16 00:54:42.558 - Info	Processing Component: SolutionPluginAssemblies
+2020-10-16 00:54:42.560 - Info	Processing Component: EntityDataProviders
+2020-10-16 00:54:42.621 - Info	
+Managed Pack complete.
+
