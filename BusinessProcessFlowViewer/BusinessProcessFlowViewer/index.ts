@@ -52,7 +52,6 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 		container.appendChild(this._container);
 		//Initialize Customm CSS based on Parameters.
 		this.initializeCustomCssWithParameters();
-		debugger;
 	}
 	/**
 	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
