@@ -1,11 +1,19 @@
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
-interface Bpf {
+interface IBpf {
 	bpfEntitySchemaName: string;
 	lookupFieldSchemaName: string;
 }
 
-interface BusinessProcessFlowJson {
-	bpfs: Bpf[];
+interface IBusinessProcessFlowJson {
+	bpfs: IBpf[];
+}
+
+interface IStageData {
+	id: string[],
+	name: string[]
+}
+interface IStagesData {
+	stage: IStageData
 }
 
 export class BusinessProcessFlowViewer implements ComponentFramework.StandardControl<IInputs, IOutputs> {
@@ -65,7 +73,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 			//We remove all items to make sure that if you perform a refresh, it will not add the records again.
 			this.removeChildItems();
 			//Parse the Parameters and make sure it contains datas.
-			let jsonParametersBPF: BusinessProcessFlowJson = JSON.parse(this._parametersBPF);
+			let jsonParametersBPF: IBusinessProcessFlowJson = JSON.parse(this._parametersBPF);
 			if (!jsonParametersBPF || jsonParametersBPF.bpfs == null || jsonParametersBPF.bpfs.length == 0) {
 				console.log("[BPFV][UPDATEVIEW] Error : JsonParameters is Empty, ensure to correctly enter the BPF parameters value.");
 				return;
@@ -78,7 +86,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	 * Function to start the process for each records in the dataset.
 	 * @param jsonParametersBPF JsonObject with all parameters to be used.
 	 */
-	private processAllRecordsInDataSet(jsonParametersBPF: BusinessProcessFlowJson) {
+	private processAllRecordsInDataSet(jsonParametersBPF: IBusinessProcessFlowJson) {
 		var order: number = 1; // Used to keep the order of the records.
 		this._numberOfRecords = this._context.parameters.dataSet.sortedRecordIds.length;
 		this._context.parameters.dataSet.sortedRecordIds.forEach((currentRecordId) => {
@@ -109,7 +117,7 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	 * @param foundBPF 
 	 * @param order Number to indicate initial records order
 	 */
-	private async processBusinessProcessFlowStageIdByCurrentRecordId(entityReference: ComponentFramework.EntityReference, currentRecordId: string, bpfEntitySchemaName: string, filterFieldSchemaName: string, bpfIteration: number, jsonParametersBPF: BusinessProcessFlowJson, foundBPF: boolean, order: number) {
+	private async processBusinessProcessFlowStageIdByCurrentRecordId(entityReference: ComponentFramework.EntityReference, currentRecordId: string, bpfEntitySchemaName: string, filterFieldSchemaName: string, bpfIteration: number, jsonParametersBPF: IBusinessProcessFlowJson, foundBPF: boolean, order: number) {
 
 		let activeStage: string[] = new Array();
 		let searchQuery: string = "?$select=_activestageid_value," + filterFieldSchemaName + ",_processid_value&$filter=" + filterFieldSchemaName + " eq " + currentRecordId;
@@ -171,16 +179,13 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 	 * @param order  Number to indicate initial records order.
 	 */
 	private async getAllBusinessProcessFlowStageByProcessId(processIdCurrentRecord: string, divContainer: HTMLDivElement, progresDiv: HTMLDivElement, activeStageIdCurrentRecord: string, order: number) {
-		//Create Array to contain all Stage Name.
-		let stage: string[] = new Array();
-		//Create Array to contain all Stage Id.
-		let processStageId: string[] = new Array();
 		//Create an object to be returned, containing the two array.
-		let datas = {
-			stage: {
-				id: processStageId,
-				name: stage
-			}
+		let stageData:IStageData={
+			id: new Array(),
+			name: new Array()
+		};
+		let stagesData:IStagesData ={
+			stage:stageData
 		};
 		try {
 
@@ -195,21 +200,21 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 				result.entities.forEach(item => {
 					var stagename: string = item[fieldToDisplay];
 					var processStageid: string = item["processstageid"];
-					stage.push(stagename);
-					processStageId.push(processStageid);
+					stageData.id.push(processStageid);
+					stageData.name.push(stagename);
 				})
-				let jsonObjectStageId: string = JSON.stringify(datas.stage.id);
+
 				//Define a variable to know which step is active for this record and this BPF.
 				let activeStageFound: boolean = false;
 				//Parse all stage id and create cells with name and find the one active.
-				JSON.parse(jsonObjectStageId, (key, value) => {
+				for (var i = 0; i < stagesData.stage.id.length; i++) {
 					let progresStageDiv: HTMLDivElement = document.createElement("div");
 					progresStageDiv.classList.add("progress-step");
 					progresStageDiv.classList.add("progress-step" + this._viewId);
 					progresStageDiv.classList.add("is-notactive");
 					progresStageDiv.classList.add("is-notactive" + this._viewId);
 					//Test if this is the Active Stage.
-					if (value === activeStageIdCurrentRecord) {
+					if (stageData.id[i] === activeStageIdCurrentRecord) {
 						activeStageFound = true;
 						progresStageDiv.classList.add("is-active");
 						progresStageDiv.classList.add("is-active" + this._viewId);
@@ -223,10 +228,10 @@ export class BusinessProcessFlowViewer implements ComponentFramework.StandardCon
 						progresStageDiv.classList.remove("is-notactive");
 						progresStageDiv.classList.remove("is-notactive" + this._viewId);
 					}
-					progresStageDiv.innerText = datas.stage.name[Number(key)];
+					progresStageDiv.innerText = stageData.name[i];
 					//We add the element to the Div. 
 					progresDiv.appendChild(progresStageDiv);
-				});
+				}
 				divContainer.appendChild(progresDiv);
 				//Add the element to the array.
 				let elementToAdd: (number | HTMLDivElement)[] = [order, divContainer]
