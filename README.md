@@ -1,5 +1,16 @@
+# ⚠️ DEPRECATED
+
+> **Warning**: This repository is no longer actively maintained and has been deprecated.
+>
+> **Reason for deprecation**: This Power Apps Component Framework (PCF) control is no longer maintained. Please consider using native Power Apps capabilities or alternative modern solutions for Business Process Flow visualization.
+>
+> **Archive Notice**: This repository has been archived and is now read-only.
+
+---
+
 <p align="center">
 <a href="https://github.com/allandecastro/BusinessProcessFlowViewer/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"/></a>
+<img src="https://img.shields.io/badge/status-deprecated-red.svg" alt="Deprecated"/>
 </p>
 
 
