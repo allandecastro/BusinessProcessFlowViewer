@@ -2,7 +2,9 @@
 
 > **Warning**: This repository is no longer actively maintained and has been deprecated.
 >
-> **Reason for deprecation**: This Power Apps Component Framework (PCF) control is no longer maintained. Please consider using native Power Apps capabilities or alternative modern solutions for Business Process Flow visualization.
+> **New Version Available**: Please use the updated version at [business-process-flow-viewer](https://github.com/allandecastro/business-process-flow-viewer)
+>
+> **Reason for deprecation**: This Power Apps Component Framework (PCF) control is no longer maintained. The new version provides improved functionality and up-to-date dependencies.
 >
 > **Archive Notice**: This repository has been archived and is now read-only.
 
